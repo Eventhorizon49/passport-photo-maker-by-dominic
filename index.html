@@ -149,6 +149,47 @@ img,canvas{display:block;max-width:100%}
 </style>
 </head>
 <body>
+
+<script>
+(function(){
+  var ua = navigator.userAgent || "";
+  var isAndroid = /Android/i.test(ua);
+  if (!isAndroid) return;
+
+  document.documentElement.classList.add("android-apk");
+
+  function syncInsets(){
+    var vv = window.visualViewport;
+    var reportedTop = vv && Number.isFinite(vv.offsetTop) ? Math.round(vv.offsetTop) : 0;
+
+    var top = Math.max(48, reportedTop);
+    var bottom = 36;
+
+    document.documentElement.style.setProperty(
+      "--safeTFinal",
+      "max(env(safe-area-inset-top,0px)," + top + "px)"
+    );
+
+    document.documentElement.style.setProperty(
+      "--safeBFinal",
+      "max(env(safe-area-inset-bottom,0px)," + bottom + "px)"
+    );
+  }
+
+  syncInsets();
+
+  window.addEventListener("resize", syncInsets, {passive:true});
+  window.addEventListener("orientationchange", function(){
+    setTimeout(syncInsets, 150);
+  }, {passive:true});
+
+  if (window.visualViewport) {
+    window.visualViewport.addEventListener("resize", syncInsets, {passive:true});
+    window.visualViewport.addEventListener("scroll", syncInsets, {passive:true});
+  }
+})();
+</script>
+
 <div class="brandSplash" id="brandSplash" aria-hidden="true"><div class="brandSplashInner"><img id="splashLogo" alt="Passport Photo Maker by Dominic"><p>Designed &amp; built by Dominic</p></div></div>
 <div class="app">
 <header class="topbar"><div class="toprow"><div class="brand"><img class="brandLogo" src="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20width=%22720%22%20height=%22140%22%20viewBox=%220%200%20720%20140%22%3E%0A%3Crect%20width=%22720%22%20height=%22140%22%20fill=%22white%22/%3E%0A%3Cg%20transform=%22translate%2810%2015%29%22%20fill=%22none%22%20stroke=%22%230B1B38%22%20stroke-width=%228%22%20stroke-linecap=%22round%22%3E%0A%3Cpath%20d=%22M10%2034V10h24%20M86%2010h24v24%20M10%2076v24h24%20M86%20100h24V76%22/%3E%0A%3Cpath%20d=%22M42%2034h12c21%200%2036%2015%2036%2033s-15%2033-36%2033H42V58%22%20/%3E%0A%3C/g%3E%0A%3Cpath%20d=%22M61%2050a24%2024%200%200%201%200%2048%22%20fill=%22none%22%20stroke=%22%231478FF%22%20stroke-width=%228%22%20stroke-linecap=%22round%22/%3E%0A%3Ccircle%20cx=%2244%22%20cy=%2268%22%20r=%226%22%20fill=%22%231478FF%22/%3E%0A%3Ctext%20x=%22145%22%20y=%2262%22%20font-family=%22-apple-system,BlinkMacSystemFont,Segoe%20UI,Arial,sans-serif%22%20font-size=%2240%22%20font-weight=%22700%22%20fill=%22%230B1B38%22%3EPassport%20Photo%20Maker%3C/text%3E%0A%3Ctext%20x=%22145%22%20y=%22105%22%20font-family=%22-apple-system,BlinkMacSystemFont,Segoe%20UI,Arial,sans-serif%22%20font-size=%2225%22%20fill=%22%236A7280%22%3Eby%3C/text%3E%0A%3Ctext%20x=%22185%22%20y=%22105%22%20font-family=%22-apple-system,BlinkMacSystemFont,Segoe%20UI,Arial,sans-serif%22%20font-size=%2227%22%20letter-spacing=%228%22%20fill=%22%231478FF%22%3EDominic%3C/text%3E%0A%3C/svg%3E" alt="Passport Photo Maker by Dominic"></div><button class="aboutBtn" id="aboutBtn" type="button" aria-label="About Passport Photo Maker by Dominic">i</button><div class="step" id="stepBadge">1 of 7</div></div></header>
@@ -196,7 +237,50 @@ img,canvas{display:block;max-width:100%}
 
 <div class="modal hidden" id="aboutModal"><div class="sheet aboutSheet"><div class="sheetHead"><h3>About</h3><button class="close" id="closeAbout" type="button">x</button></div><img class="aboutMark" id="aboutLogo" alt="Passport Photo Maker by Dominic"><p class="aboutCopy">A simple, private passport photo utility designed and built by Dominic. Your photo editing happens on your device inside the app.</p><div class="aboutMeta"><div><span>Creator</span><strong>Dominic</strong></div><div><span>Version</span><strong>1.0</strong></div><div><span>Copyright</span><strong>(c) 2026 Dominic</strong></div></div></div></div>
 <div class="modal hidden" id="saveModal"><div class="sheet"><div class="sheetHead"><h3>Save photo</h3><button class="close" id="closeSave">x</button></div><div class="seg"><button class="active" data-format="jpeg">JPEG</button><button data-format="png">PNG</button></div><div style="margin-top:10px"><div class="rangeHead"><strong>Image quality</strong><span id="qualityValue">95%</span></div><input id="qualityRange" type="range" min="40" max="100" value="95"></div><div class="summaryBox"><div>Estimated size<strong id="estimate">-</strong></div><div>Resolution<strong id="resolution">-</strong></div></div><div style="margin-top:10px;font-size:10px;font-weight:700">Picture resolution (DPI)</div><div class="dpiRow"><button class="dpi active" data-dpi="300">300</button><button class="dpi" data-dpi="350">350</button><button class="dpi" data-dpi="450">450</button><button class="dpi" data-dpi="custom">Custom</button></div><div class="field hidden" id="customDpiWrap" style="margin-top:8px"><input id="customDpi" type="number" min="72" max="1200" value="600"></div><button class="btn primary" id="confirmSave" style="width:100%;margin-top:12px">Save</button></div></div>
-<div id="printArea"></div><style id="printStyle"></style>
+<div id="printArea"></div><style id="printStyle">
+
+/* ===== Strong Android notch + navigation safe-area patch ===== */
+html.android-apk{
+  --safeTFinal:max(env(safe-area-inset-top,0px),48px);
+  --safeBFinal:max(env(safe-area-inset-bottom,0px),36px);
+}
+
+html.android-apk .app{
+  height:100dvh !important;
+  max-height:100dvh !important;
+}
+
+html.android-apk .topbar{
+  padding-top:calc(10px + var(--safeTFinal)) !important;
+}
+
+html.android-apk .bottom{
+  padding-bottom:calc(10px + var(--safeBFinal)) !important;
+}
+
+html.android-apk .modal .sheet{
+  padding-bottom:calc(18px + var(--safeBFinal)) !important;
+}
+
+@media (max-height:760px){
+  html.android-apk .topbar{
+    padding-top:calc(8px + var(--safeTFinal)) !important;
+  }
+  html.android-apk .bottom{
+    padding-bottom:calc(8px + var(--safeBFinal)) !important;
+  }
+}
+
+@media (max-height:660px){
+  html.android-apk .topbar{
+    padding-top:calc(6px + var(--safeTFinal)) !important;
+  }
+  html.android-apk .bottom{
+    padding-bottom:calc(6px + var(--safeBFinal)) !important;
+  }
+}
+
+</style>
 <script>
 (()=>{'use strict';
 const $=(s,p=document)=>p.querySelector(s), $$=(s,p=document)=>Array.from(p.querySelectorAll(s));

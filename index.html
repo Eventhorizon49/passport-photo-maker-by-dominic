@@ -152,40 +152,9 @@ img,canvas{display:block;max-width:100%}
 
 <script>
 (function(){
-  var ua = navigator.userAgent || "";
-  var isAndroid = /Android/i.test(ua);
-  if (!isAndroid) return;
-
-  document.documentElement.classList.add("android-apk");
-
-  function syncInsets(){
-    var vv = window.visualViewport;
-    var reportedTop = vv && Number.isFinite(vv.offsetTop) ? Math.round(vv.offsetTop) : 0;
-
-    var top = Math.max(48, reportedTop);
-    var bottom = 36;
-
-    document.documentElement.style.setProperty(
-      "--safeTFinal",
-      "max(env(safe-area-inset-top,0px)," + top + "px)"
-    );
-
-    document.documentElement.style.setProperty(
-      "--safeBFinal",
-      "max(env(safe-area-inset-bottom,0px)," + bottom + "px)"
-    );
-  }
-
-  syncInsets();
-
-  window.addEventListener("resize", syncInsets, {passive:true});
-  window.addEventListener("orientationchange", function(){
-    setTimeout(syncInsets, 150);
-  }, {passive:true});
-
-  if (window.visualViewport) {
-    window.visualViewport.addEventListener("resize", syncInsets, {passive:true});
-    window.visualViewport.addEventListener("scroll", syncInsets, {passive:true});
+  var ua=navigator.userAgent||"";
+  if(/Android/i.test(ua) && (/\bwv\b/i.test(ua) || /; wv\)/i.test(ua) || /Version\/4\.0/i.test(ua))){
+    document.documentElement.classList.add("apk-webview");
   }
 })();
 </script>
@@ -239,45 +208,10 @@ img,canvas{display:block;max-width:100%}
 <div class="modal hidden" id="saveModal"><div class="sheet"><div class="sheetHead"><h3>Save photo</h3><button class="close" id="closeSave">x</button></div><div class="seg"><button class="active" data-format="jpeg">JPEG</button><button data-format="png">PNG</button></div><div style="margin-top:10px"><div class="rangeHead"><strong>Image quality</strong><span id="qualityValue">95%</span></div><input id="qualityRange" type="range" min="40" max="100" value="95"></div><div class="summaryBox"><div>Estimated size<strong id="estimate">-</strong></div><div>Resolution<strong id="resolution">-</strong></div></div><div style="margin-top:10px;font-size:10px;font-weight:700">Picture resolution (DPI)</div><div class="dpiRow"><button class="dpi active" data-dpi="300">300</button><button class="dpi" data-dpi="350">350</button><button class="dpi" data-dpi="450">450</button><button class="dpi" data-dpi="custom">Custom</button></div><div class="field hidden" id="customDpiWrap" style="margin-top:8px"><input id="customDpi" type="number" min="72" max="1200" value="600"></div><button class="btn primary" id="confirmSave" style="width:100%;margin-top:12px">Save</button></div></div>
 <div id="printArea"></div><style id="printStyle">
 
-/* ===== Strong Android notch + navigation safe-area patch ===== */
-html.android-apk{
-  --safeTFinal:max(env(safe-area-inset-top,0px),48px);
-  --safeBFinal:max(env(safe-area-inset-bottom,0px),36px);
-}
-
-html.android-apk .app{
-  height:100dvh !important;
-  max-height:100dvh !important;
-}
-
-html.android-apk .topbar{
-  padding-top:calc(10px + var(--safeTFinal)) !important;
-}
-
-html.android-apk .bottom{
-  padding-bottom:calc(10px + var(--safeBFinal)) !important;
-}
-
-html.android-apk .modal .sheet{
-  padding-bottom:calc(18px + var(--safeBFinal)) !important;
-}
-
-@media (max-height:760px){
-  html.android-apk .topbar{
-    padding-top:calc(8px + var(--safeTFinal)) !important;
-  }
-  html.android-apk .bottom{
-    padding-bottom:calc(8px + var(--safeBFinal)) !important;
-  }
-}
-
-@media (max-height:660px){
-  html.android-apk .topbar{
-    padding-top:calc(6px + var(--safeTFinal)) !important;
-  }
-  html.android-apk .bottom{
-    padding-bottom:calc(6px + var(--safeBFinal)) !important;
-  }
+/* Balanced safe-area fallback for APK wrappers that report zero CSS insets. */
+html.apk-webview{
+  --safeT:max(env(safe-area-inset-top,0px),24px);
+  --safeB:max(env(safe-area-inset-bottom,0px),10px);
 }
 
 </style>
@@ -286,6 +220,42 @@ html.android-apk .modal .sheet{
 const $=(s,p=document)=>p.querySelector(s), $$=(s,p=document)=>Array.from(p.querySelectorAll(s));
 const clamp=(v,a,b)=>Math.max(a,Math.min(b,v)); const mmPx=(mm,dpi)=>Math.max(1,Math.round(mm/25.4*dpi)); const kb=b=>b<1048576?`${(b/1024).toFixed(b<10240?1:0)} KB`:`${(b/1048576).toFixed(2)} MB`;
 function fitCanvasInStage(canvas,stage,ratio){if(!canvas||!stage||!ratio)return;const r=stage.getBoundingClientRect();if(r.width<2||r.height<2)return;const cs=getComputedStyle(stage);const px=(parseFloat(cs.paddingLeft)||0)+(parseFloat(cs.paddingRight)||0),py=(parseFloat(cs.paddingTop)||0)+(parseFloat(cs.paddingBottom)||0);const aw=Math.max(1,r.width-px-2),ah=Math.max(1,r.height-py-2);let w=Math.min(aw,ah*ratio),h=w/ratio;if(h>ah){h=ah;w=h*ratio}canvas.style.setProperty('width',Math.max(1,Math.floor(w))+'px','important');canvas.style.setProperty('height',Math.max(1,Math.floor(h))+'px','important');canvas.style.setProperty('max-width','100%','important');canvas.style.setProperty('max-height','100%','important');canvas.style.setProperty('margin','auto','important');canvas.style.setProperty('position','relative','important');canvas.style.setProperty('left','auto','important');canvas.style.setProperty('right','auto','important');canvas.style.setProperty('top','auto','important');canvas.style.setProperty('transform','none','important');}
+
+function isApkWebView(){
+  const ua=navigator.userAgent||"";
+  return /Android/i.test(ua) && (/\bwv\b/i.test(ua) || /; wv\)/i.test(ua) || /Version\/4\.0/i.test(ua));
+}
+async function blobToDataURL(blob){
+  return new Promise((resolve,reject)=>{
+    const r=new FileReader();
+    r.onload=()=>resolve(r.result);
+    r.onerror=reject;
+    r.readAsDataURL(blob);
+  });
+}
+function downloadBlob(blob,filename){
+  const u=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  a.href=u;a.download=filename;a.style.display='none';
+  document.body.appendChild(a);a.click();
+  setTimeout(()=>{a.remove();URL.revokeObjectURL(u)},1500);
+}
+async function openBlobFallback(blob,filename){
+  try{
+    const data=await blobToDataURL(blob);
+    const w=window.open(data,'_blank');
+    if(w)return true;
+  }catch(e){}
+  downloadBlob(blob,filename);
+  return false;
+}
+async function makeSheetBlob(){
+  const c=document.createElement('canvas');
+  renderSheetOn(c);
+  await new Promise(r=>setTimeout(r,140));
+  return new Promise(resolve=>c.toBlob(resolve,'image/png',1));
+}
+
 const state={screen:1,photoW:35,photoH:45,image:null,crop:{zoom:1,rotation:0,quarter:0,flip:false,x:0,y:0,grid:false,guides:true},adjust:{brightness:0,contrast:0,saturation:0,exposure:0,highlights:0,shadows:0,warmth:0,tint:0,sharpness:0,grayscale:0},border:{width:0,color:'#000000'},activeAdjust:'brightness',base:null,saved:{format:'jpeg',quality:.95,dpi:300,blob:null,url:null,w:0,h:0},paper:{name:'4R',w:102,h:152,orientation:'portrait',custom:false},spacing:0,copies:1};
 const cropHist=[],cropFuture=[],editHist=[],editFuture=[];
 const copy=o=>JSON.parse(JSON.stringify(o));
@@ -294,7 +264,7 @@ function pushEdit(){editHist.push({adjust:copy(state.adjust),border:copy(state.b
 function syncHistory(){$('#cropUndo').disabled=!cropHist.length;$('#cropRedo').disabled=!cropFuture.length;$('#editUndo').disabled=!editHist.length;$('#editRedo').disabled=!editFuture.length}
 function show(n){state.screen=n;$$('.screen').forEach(s=>s.classList.toggle('active',+s.dataset.screen===n));$('#stepBadge').textContent=`${n} of 7`;$('#backBtn').classList.toggle('hidden',n===1);$('#nextBtn').classList.remove('hidden');$('#nextBtn').textContent=({1:'Continue',2:'Next',3:'Save',4:'',5:'Continue',6:'Continue',7:'Print'})[n]||'Continue';if(n===4)$('#nextBtn').classList.add('hidden');if(n===2)requestAnimationFrame(()=>requestAnimationFrame(resizeCrop));if(n===3)requestAnimationFrame(()=>requestAnimationFrame(renderEdit));if(n===6)requestAnimationFrame(()=>requestAnimationFrame(renderSheet));if(n===7)requestAnimationFrame(()=>requestAnimationFrame(renderFinal))}
 $('#backBtn').onclick=()=>{if(state.screen>1)show(state.screen-1)};
-$('#nextBtn').onclick=()=>{if(state.screen===1){const w=+$('#photoW').value,h=+$('#photoH').value;if(!(w>0&&h>0))return alert('Enter valid photo dimensions.');state.photoW=w;state.photoH=h;show(2)}else if(state.screen===2){if(!state.image)return alert('Choose a photo first.');state.base=exportCrop(1800);show(3)}else if(state.screen===3){renderEdit();openSave()}else if(state.screen===5){applyPaper();state.copies=Math.max(1,fitLayout().max);show(6)}else if(state.screen===6)show(7);else if(state.screen===7){preparePrint();setTimeout(()=>window.print(),80)}};
+$('#nextBtn').onclick=()=>{if(state.screen===1){const w=+$('#photoW').value,h=+$('#photoH').value;if(!(w>0&&h>0))return alert('Enter valid photo dimensions.');state.photoW=w;state.photoH=h;show(2)}else if(state.screen===2){if(!state.image)return alert('Choose a photo first.');state.base=exportCrop(1800);show(3)}else if(state.screen===3){renderEdit();openSave()}else if(state.screen===5){applyPaper();state.copies=Math.max(1,fitLayout().max);show(6)}else if(state.screen===6)show(7);else if(state.screen===7){if(!isApkWebView()){preparePrint();setTimeout(()=>window.print(),80)}else{(async()=>{const b=await makeSheetBlob();if(!b){alert('Could not create the print sheet.');return}const filename=`passport-sheet-by-dominic-${state.paper.name}-${state.copies}copies.png`;const opened=await openBlobFallback(b,filename);if(!opened)alert('This APK wrapper does not support Android printing directly. The full print sheet has been saved. Open it in Chrome, Gallery or Files and choose Print.')})()}}};
 // Photo presets - explicit listeners for Android WebView reliability
 function selectPhotoPreset(btn){$$('.preset').forEach(x=>x.classList.remove('active'));btn.classList.add('active');state.photoW=+btn.dataset.w;state.photoH=+btn.dataset.h;$('#photoW').value=state.photoW;$('#photoH').value=state.photoH}
 $$('.preset').forEach(btn=>{btn.addEventListener('click',()=>selectPhotoPreset(btn));btn.addEventListener('touchend',e=>{e.preventDefault();selectPhotoPreset(btn)},{passive:false})});
@@ -334,7 +304,7 @@ function processed(dpi){const w=mmPx(state.photoW,dpi),h=mmPx(state.photoH,dpi),
 // Save
 function openSave(){$('#saveModal').classList.remove('hidden');updateEstimate()};$('#closeSave').onclick=()=>$('#saveModal').classList.add('hidden');$$('[data-format]').forEach(b=>b.onclick=()=>{$$('[data-format]').forEach(x=>x.classList.toggle('active',x===b));state.saved.format=b.dataset.format;updateEstimate()});$('#qualityRange').oninput=e=>{state.saved.quality=+e.target.value/100;$('#qualityValue').textContent=e.target.value+'%';updateEstimateSoon()};$$('.dpi').forEach(b=>b.onclick=()=>{$$('.dpi').forEach(x=>x.classList.toggle('active',x===b));$('#customDpiWrap').classList.toggle('hidden',b.dataset.dpi!=='custom');state.saved.dpi=b.dataset.dpi==='custom'?(+$('#customDpi').value||600):+b.dataset.dpi;updateEstimate()});$('#customDpi').oninput=e=>{state.saved.dpi=clamp(+e.target.value||300,72,1200);updateEstimateSoon()};let et;function updateEstimateSoon(){clearTimeout(et);et=setTimeout(updateEstimate,120)}function toBlob(cv,type,q){return new Promise(r=>cv.toBlob(r,type,q))}async function updateEstimate(){if(!state.base)return;const cv=processed(state.saved.dpi);$('#resolution').textContent=`${cv.width} x ${cv.height} px`;$('#estimate').textContent='Calculating...';const b=await toBlob(cv,state.saved.format==='png'?'image/png':'image/jpeg',state.saved.quality);$('#estimate').textContent=b?kb(b.size):'-'}
 $('#confirmSave').onclick=async()=>{const cv=processed(state.saved.dpi),type=state.saved.format==='png'?'image/png':'image/jpeg',b=await toBlob(cv,type,state.saved.quality);if(!b)return alert('Could not save this image.');if(state.saved.url)URL.revokeObjectURL(state.saved.url);state.saved.blob=b;state.saved.url=URL.createObjectURL(b);state.saved.w=cv.width;state.saved.h=cv.height;const ext=state.saved.format==='png'?'png':'jpg',a=document.createElement('a');a.href=state.saved.url;a.download=`passport-photo-by-dominic-${state.photoW}x${state.photoH}mm.${ext}`;document.body.appendChild(a);a.click();a.remove();$('#saveModal').classList.add('hidden');$('#savedPreview').src=state.saved.url;$('#savedSize').textContent=`${state.photoW} x ${state.photoH} mm`;$('#savedPixels').textContent=`${state.saved.w} x ${state.saved.h} px - ${state.saved.dpi} DPI`;$('#savedFile').textContent=kb(b.size);show(4)};
-$('#shareBtn').onclick=async()=>{if(!state.saved.blob)return;const ext=state.saved.format==='png'?'png':'jpg',file=new File([state.saved.blob],`passport-photo-by-dominic.${ext}`,{type:state.saved.blob.type}),shareText='Created with Passport Photo Maker by Dominic';if(navigator.share&&navigator.canShare&&navigator.canShare({files:[file]})){try{return await navigator.share({title:'Passport Photo Maker by Dominic',text:shareText,files:[file]})}catch(e){if(e.name==='AbortError')return}}const a=document.createElement('a');a.href=state.saved.url;a.download=file.name;a.click()};$('#printBtn').onclick=()=>show(5);
+$('#shareBtn').onclick=async()=>{if(!state.saved.blob)return;const ext=state.saved.format==='png'?'png':'jpg',filename=`passport-photo-by-dominic.${ext}`,file=new File([state.saved.blob],filename,{type:state.saved.blob.type}),shareText='Created with Passport Photo Maker by Dominic';if(navigator.share){try{if(!navigator.canShare||navigator.canShare({files:[file]})){await navigator.share({title:'Passport Photo Maker by Dominic',text:shareText,files:[file]});return}await navigator.share({title:'Passport Photo Maker by Dominic',text:shareText});return}catch(e){if(e&&e.name==='AbortError')return}}const opened=await openBlobFallback(state.saved.blob,filename);if(!opened)alert('This APK wrapper cannot open the Android share sheet. The photo has been saved so you can share it from Gallery or Files.')};$('#printBtn').onclick=()=>show(5);
 // Paper selection explicit
 const paperData=[['3R','3.5 x 5 in',89,127],['4R','4 x 6 in',102,152],['5R','5 x 7 in',127,178],['6R','6 x 8 in',152,203],['8R','8 x 10 in',203,254],['A4','8.27 x 11.69 in',210,297],['S8R','8 x 12 in',203,305],['10R','10 x 12 in',254,305],['Long','3.5 x 8.1 in',90,205],['Other','100 x 148 mm',100,148],['Other','120 x 235 mm',120,235]];
 function choosePaper(btn){$$('.paper').forEach(x=>x.classList.remove('active'));btn.classList.add('active');if(btn.dataset.custom==='1'){state.paper.custom=true;state.paper.name='Custom';$('#customPaper').classList.add('show')}else{state.paper={name:btn.dataset.name,w:+btn.dataset.w,h:+btn.dataset.h,orientation:'portrait',custom:false};$('#customPaper').classList.remove('show')}state.spacing=0;state.copies=1}

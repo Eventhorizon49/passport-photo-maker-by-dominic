@@ -10,17 +10,16 @@
 <meta name="apple-mobile-web-app-title" content="Passport Photo Maker">
 <meta name="format-detection" content="telephone=no">
 <meta name="color-scheme" content="light">
-<link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="Passport Photo Maker">
-<title>Instant Passport Photo Maker by Dominic</title>
+<title>Passport Photo Maker by Dominic</title>
 <style>
 :root{--bg:#f5f5f7;--card:#fff;--text:#1d1d1f;--muted:#6e6e73;--line:#d2d2d7;--blue:#007aff;--blueSoft:#eaf4ff;--red:#ff3b30;--r:18px;--safeB:env(safe-area-inset-bottom,0px);--safeT:env(safe-area-inset-top,0px)}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",Arial,sans-serif}button,input,select{font:inherit}button{cursor:pointer;color:inherit}.app{width:min(100%,560px);height:100dvh;margin:auto;display:grid;grid-template-rows:auto 1fr auto;background:var(--bg);overflow:hidden}.topbar{padding:calc(10px + var(--safeT)) 14px 9px;background:rgba(255,255,255,.94);border-bottom:1px solid rgba(0,0,0,.08);backdrop-filter:blur(20px);z-index:5}.toprow{display:flex;align-items:center;gap:10px}.brand{min-width:0;flex:1}.brand h1{margin:0;font-size:16px;line-height:1.15;font-weight:750;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.brand small{display:block;color:var(--muted);font-size:10px;margin-top:2px}.step{background:var(--blueSoft);color:var(--blue);font-weight:750;font-size:12px;padding:7px 10px;border-radius:999px;white-space:nowrap}.content{min-height:0;overflow:hidden}.screen{display:none;height:100%;padding:12px 14px 10px;overflow:hidden}.screen.active{display:grid;grid-template-rows:auto minmax(0,1fr);gap:9px}.hero{min-height:0}.hero h2{margin:0;font-size:clamp(22px,5vw,30px);letter-spacing:-.6px;line-height:1.05}.hero p{margin:5px 0 0;color:var(--muted);font-size:12px;line-height:1.35}.workspace{min-height:0;overflow:hidden;display:flex;flex-direction:column;gap:9px}.card{background:var(--card);border:1px solid rgba(0,0,0,.08);border-radius:var(--r);padding:12px;box-shadow:0 7px 24px rgba(0,0,0,.045)}.sectionHead{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:8px}.sectionHead strong{font-size:14px}.sectionHead span{font-size:11px;color:var(--muted)}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px}.field label{display:block;font-size:10px;font-weight:700;color:#3a3a3c;margin:0 0 4px}.field input,.field select,select.compact{width:100%;height:40px;border:1px solid var(--line);border-radius:12px;background:#fff;padding:0 10px;outline:none}.field input:focus,.field select:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(0,122,255,.1)}
 /* screen 1 */.customFirst{display:grid;grid-template-columns:1fr 1fr auto;gap:7px;align-items:end}.customFirst .applyMini{height:40px;border:0;border-radius:12px;background:var(--blue);color:#fff;padding:0 13px;font-weight:700}.presetGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:7px;min-height:0}.preset{border:1px solid var(--line);background:#fff;border-radius:14px;padding:10px;text-align:left;min-height:58px}.preset strong{font-size:13px;display:block}.preset span{font-size:10px;color:var(--muted);display:block;margin-top:3px}.preset.active{border-color:var(--blue);background:var(--blueSoft);box-shadow:inset 0 0 0 1px var(--blue)}
 /* utility bars */.historybar{display:flex;gap:7px;align-items:center;justify-content:flex-end}.iconBtn{height:34px;min-width:34px;border:1px solid var(--line);border-radius:11px;background:#fff;font-size:12px;font-weight:700;padding:0 9px}.iconBtn:disabled{opacity:.35}.iconBtn.danger{color:var(--red)}
 /* crop */.cropLayout{display:grid;grid-template-rows:auto minmax(0,1fr) auto auto;gap:7px;min-height:0}.upload{position:relative;flex:1;border:1.5px dashed #a7c7ee;background:#f8fbff;border-radius:18px;display:grid;place-items:center;text-align:center;min-height:0}.upload input{position:absolute;inset:0;width:100%;height:100%;opacity:0}.upload .uicon{width:50px;height:50px;border-radius:15px;background:var(--blueSoft);color:var(--blue);font-size:26px;display:grid;place-items:center;margin:0 auto 8px}.upload strong{font-size:14px}.upload small{display:block;color:var(--muted);font-size:10px;margin-top:4px}.cropStage{min-height:0;background:#111216;border-radius:18px;padding:8px;display:grid;place-items:center}.cropArea{width:100%;height:100%;min-height:200px;max-height:100%;position:relative;overflow:hidden;border-radius:13px;touch-action:none;background:#1c1c1e}.cropArea canvas{width:100%;height:100%;display:block;touch-action:none}.toolRow{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}.tool{height:40px;border:1px solid var(--line);border-radius:12px;background:#fff;font-size:10px;font-weight:700;padding:0 5px}.tool.active{color:var(--blue);background:var(--blueSoft);border-color:#9dcbff}.controlPanel{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:14px;padding:8px}.rangeHead{display:flex;justify-content:space-between;align-items:center;font-size:10px;margin-bottom:3px}.rangeHead strong{font-size:11px}input[type=range]{width:100%;accent-color:var(--blue);height:18px}.miniSize{display:none;grid-template-columns:1fr 1fr auto;gap:6px;margin-top:6px}.miniSize.show{display:grid}.miniSize input{height:34px;border:1px solid var(--line);border-radius:10px;width:100%;padding:0 8px}.miniSize button{height:34px;border:0;border-radius:10px;background:var(--blue);color:#fff;font-weight:700;padding:0 10px}
-/* edit */.editLayout{display:grid;grid-template-rows:auto minmax(0,1fr) auto;gap:7px;min-height:0}.previewStage{min-height:0;background:#e9e9ee;border-radius:18px;padding:8px;display:grid;place-items:center;overflow:hidden}.previewStage canvas{max-width:100%;max-height:100%;background:#fff;box-shadow:0 6px 22px rgba(0,0,0,.12)}.tabs{display:grid;grid-template-columns:1fr 1fr;background:#efeff4;border-radius:12px;padding:3px}.tab{height:34px;border:0;border-radius:9px;background:transparent;font-size:11px;font-weight:700}.tab.active{background:#fff;box-shadow:0 2px 7px rgba(0,0,0,.07)}.adjustChips{display:flex;gap:5px;overflow-x:auto;scrollbar-width:none;margin-top:6px}.adjustChips::-webkit-scrollbar{display:none}.chip{flex:0 0 auto;height:30px;border:1px solid var(--line);background:#fff;border-radius:999px;padding:0 9px;font-size:9px;font-weight:700}.chip.active{background:var(--blue);color:#fff;border-color:var(--blue)}.swatches{display:flex;gap:8px;align-items:center;overflow-x:auto;margin-top:6px}.swatch{width:30px;height:30px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px #c7c7cc;flex:none}.swatch.active{box-shadow:0 0 0 3px var(--blue)}.borderTools{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:end;margin-top:6px}.borderTools input[type=color]{width:44px;height:34px;border:1px solid var(--line);border-radius:10px;padding:2px;background:#fff}
+/* edit */.editLayout{display:grid;grid-template-rows:auto minmax(0,1fr) auto;gap:7px;min-height:0}.previewStage{min-height:0;background:#e9e9ee;border-radius:18px;padding:8px;display:grid;place-items:center;overflow:hidden}.previewStage canvas{max-width:100%;max-height:100%;background:#fff;box-shadow:0 6px 22px rgba(0,0,0,.12)}.tabs{display:grid;grid-template-columns:repeat(3,1fr);background:#efeff4;border-radius:12px;padding:3px}.tab{height:34px;border:0;border-radius:9px;background:transparent;font-size:11px;font-weight:700}.tab.active{background:#fff;box-shadow:0 2px 7px rgba(0,0,0,.07)}.adjustChips{display:flex;gap:5px;overflow-x:auto;scrollbar-width:none;margin-top:6px}.adjustChips::-webkit-scrollbar{display:none}.chip{flex:0 0 auto;height:30px;border:1px solid var(--line);background:#fff;border-radius:999px;padding:0 9px;font-size:9px;font-weight:700}.chip.active{background:var(--blue);color:#fff;border-color:var(--blue)}.swatches{display:flex;gap:8px;align-items:center;overflow-x:auto;margin-top:6px}.swatch{width:30px;height:30px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px #c7c7cc;flex:none}.swatch.active{box-shadow:0 0 0 3px var(--blue)}.borderTools{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:end;margin-top:6px}.borderTools input[type=color]{width:44px;height:34px;border:1px solid var(--line);border-radius:10px;padding:2px;background:#fff}
+.bgPanel{padding-top:7px}.bgActionRow{display:grid;grid-template-columns:1fr 1fr;gap:7px}.bgAction{height:38px;border:1px solid var(--line);border-radius:11px;background:#fff;font-size:10px;font-weight:750}.bgAction.primaryBg{background:var(--blue);border-color:var(--blue);color:#fff}.bgAction:disabled{opacity:.45}.bgStatus{margin:7px 0 0;font-size:9px;color:var(--muted);line-height:1.3;min-height:12px}.bgChoices{display:flex;gap:7px;align-items:center;overflow-x:auto;margin-top:7px}.bgChoice{height:32px;flex:0 0 auto;border:1px solid var(--line);border-radius:999px;background:#fff;padding:0 10px;font-size:9px;font-weight:700}.bgChoice.active{border-color:var(--blue);color:var(--blue);background:var(--blueSoft)}.bgColor{width:38px;height:32px;flex:none;border:1px solid var(--line);border-radius:10px;padding:2px;background:#fff}
+
 /* saved */.savedLayout{display:grid;grid-template-rows:auto minmax(0,1fr) auto;gap:8px;min-height:0}.savedCard{display:grid;grid-template-rows:auto minmax(0,1fr);min-height:0}.savedInfo{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:8px}.savedInfo strong{font-size:13px}.savedInfo span{font-size:11px;color:var(--muted)}.savedPreviewWrap{min-height:0;display:grid;place-items:center;background:#ededf2;border-radius:14px;padding:8px;overflow:hidden}.savedPreviewWrap img{max-width:100%;max-height:100%;object-fit:contain;background:#fff;box-shadow:0 6px 20px rgba(0,0,0,.1)}.choiceGrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.choice{height:68px;border:1px solid var(--line);background:#fff;border-radius:16px;font-weight:750;font-size:13px}.choice small{display:block;color:var(--muted);font-size:9px;font-weight:500;margin-top:2px}
 /* paper */.paperGrid{display:grid;grid-template-columns:1fr 1fr;gap:6px;min-height:0}.paper{border:1px solid var(--line);background:#fff;border-radius:13px;padding:8px 9px;text-align:left;min-height:50px}.paper strong{display:block;font-size:11px;line-height:1.15}.paper span{display:block;font-size:9px;color:var(--muted);margin-top:2px}.paper.active{border-color:var(--blue);background:var(--blueSoft);box-shadow:inset 0 0 0 1px var(--blue)}.customPaperPanel{display:none;grid-template-columns:1fr 1fr 1fr;gap:6px;padding:8px;background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:14px}.customPaperPanel.show{display:grid}.customPaperPanel input,.customPaperPanel select{width:100%;height:34px;border:1px solid var(--line);border-radius:10px;padding:0 7px;background:#fff;font-size:10px}
 /* gangup */.gangLayout{display:grid;grid-template-rows:auto minmax(0,1fr) auto auto;gap:7px;min-height:0}.paperInfo{display:flex;justify-content:space-between;align-items:center;background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:13px;padding:8px 10px;font-size:10px}.paperInfo strong{font-size:11px}.paperStage{min-height:0;background:#d8d8dc;border-radius:18px;padding:8px;display:grid;place-items:center;overflow:hidden}.paperStage canvas{max-width:100%;max-height:100%;background:#fff;box-shadow:0 7px 24px rgba(0,0,0,.16)}.counterGrid{display:grid;grid-template-columns:1fr 1fr;gap:7px}.counter{display:grid;grid-template-columns:38px 1fr 38px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:14px;padding:6px}.counter button{width:34px;height:34px;border:0;border-radius:50%;background:#efeff4;font-size:21px;line-height:1}.counter .val{text-align:center}.counter .val strong{display:block;font-size:13px}.counter .val span{display:block;font-size:9px;color:var(--muted)}.notice{background:#eef6ff;border:1px solid #d5e8ff;color:#174ea6;border-radius:12px;padding:8px 10px;font-size:9px;line-height:1.3}
@@ -155,9 +154,172 @@ img,canvas{display:block;max-width:100%}
   .preset{padding-left:43px!important}
   .preset:before{left:10px!important;width:18px!important;height:24px!important}
 }
+
+/* polished background colour controls */
+.bgChoices{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:12px}
+.bgChoice{width:48px;height:48px;min-width:48px;padding:0;border-radius:50%;border:2px solid #d5d8dd;background:#fff;font-size:0;position:relative;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.bgChoice[data-bg="#ffffff"]{background:#fff}.bgChoice[data-bg="#dbeeff"]{background:#dbeeff}
+.bgChoice[data-bg="transparent"]{background:linear-gradient(45deg,#e7e7e7 25%,transparent 25%),linear-gradient(-45deg,#e7e7e7 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#e7e7e7 75%),linear-gradient(-45deg,transparent 75%,#e7e7e7 75%);background-size:12px 12px;background-position:0 0,0 6px,6px -6px,-6px 0}
+.bgChoice.active{border:3px solid #1592f5;box-shadow:0 0 0 3px rgba(21,146,245,.13)}
+.customColorPill{height:48px;border:1px solid #d5d8dd;border-radius:24px;padding:0 17px;background:#fff;display:flex;align-items:center;gap:9px;font-weight:700;font-size:14px;color:#17171a}
+.rainbowDot{width:25px;height:25px;border-radius:50%;background:conic-gradient(#ff3b30,#ffcc00,#34c759,#00c7ff,#007aff,#af52de,#ff2d55,#ff3b30);box-shadow:inset 0 0 0 2px #fff,0 0 0 1px #d6d6d8}
+.customShadePanel{margin-top:14px;padding:14px;border-radius:18px;background:#f5f5f7}.customShadePanel.hidden{display:none}
+.hueSlider{width:100%;height:28px;border-radius:14px;appearance:none;-webkit-appearance:none;background:linear-gradient(90deg,#f00,#ff0,#0f0,#0ff,#00f,#f0f,#f00);outline:none}
+.hueSlider::-webkit-slider-thumb{-webkit-appearance:none;width:34px;height:34px;border-radius:50%;background:var(--picked,#168cf0);border:4px solid #fff;box-shadow:0 1px 6px rgba(0,0,0,.35)}
+.shadeSlider{width:100%;margin-top:13px;accent-color:#1592f5}
+
+/* background removal status toast */
+.bgToast{
+  position:fixed;left:50%;top:50%;
+  transform:translateX(-50%) translateY(-8px);
+  z-index:9999;min-width:250px;max-width:calc(100vw - 36px);
+  padding:13px 16px;border-radius:16px;background:rgba(22,22,24,.94);
+  color:#fff;font-size:13px;font-weight:700;line-height:1.25;text-align:center;
+  box-shadow:0 10px 30px rgba(0,0,0,.22);opacity:0;pointer-events:none;
+  transition:opacity .2s ease,transform .2s ease
+}
+.bgToast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+
+.changePhotoBtn{
+  position:absolute;right:12px;top:12px;z-index:8;height:38px;padding:0 14px;
+  border:1px solid rgba(0,0,0,.10);border-radius:19px;background:rgba(255,255,255,.94);
+  font-size:12px;font-weight:750;color:#111;box-shadow:0 3px 12px rgba(0,0,0,.10)
+}
+.changePhotoBtn.hidden{display:none}
+
+
+/* final background color row alignment */
+.bgChoices{
+  display:grid !important;
+  grid-template-columns:repeat(3,48px) minmax(132px,1fr);
+  align-items:center;
+  justify-content:center;
+  column-gap:14px;
+  width:100%;
+  margin-top:12px;
+}
+.customColorPill{
+  width:100%;
+  justify-content:center;
+  padding:0 18px;
+}
+@media (max-width:390px){
+  .bgChoices{
+    grid-template-columns:repeat(3,44px) minmax(118px,1fr);
+    column-gap:10px;
+  }
+  .bgChoice{width:44px;height:44px;min-width:44px}
+  .customColorPill{height:44px;font-size:13px;padding:0 14px}
+}
+
+
+.changePhotoDock{
+  display:flex;justify-content:center;margin-top:8px
+}
+.changePhotoDock.hidden{display:none}
+.changePhotoDock .changePhotoBtn{
+  position:static !important;
+  height:40px;padding:0 18px;border-radius:20px;
+  background:#fff;border:1px solid var(--line);
+  font-size:12px;font-weight:750;color:#111;
+  box-shadow:none
+}
+
+
+/* final Step 2 Change photo placement */
+.changePhotoTop{
+  display:flex;
+  justify-content:flex-start;
+  align-items:center;
+  margin:6px 0 10px 0;
+}
+.changePhotoTop.hidden{display:none}
+.changePhotoTopBtn{
+  appearance:none;
+  -webkit-appearance:none;
+  border:1px solid var(--line,#dedede);
+  background:#fff;
+  color:#111;
+  min-height:38px;
+  padding:0 16px;
+  border-radius:19px;
+  font:inherit;
+  font-size:12px;
+  font-weight:750;
+  cursor:pointer;
+}
+.changePhotoTopBtn:active{transform:scale(.98)}
+
+
+/* definitive Step 2 Change photo control */
+.cropTopActions{
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+  margin:6px 0 10px;
+}
+.cropTopActions.hidden{display:none}
+.changePhotoTopBtn{
+  -webkit-appearance:none;
+  appearance:none;
+  min-height:38px;
+  padding:0 16px;
+  border-radius:19px;
+  border:1px solid var(--line,#d9d9de);
+  background:#fff;
+  color:#111;
+  font-size:12px;
+  font-weight:750;
+  box-shadow:0 1px 3px rgba(0,0,0,.04);
+}
+.changePhotoTopBtn:active{transform:scale(.98)}
+
+
+/* final Step 2 action alignment */
+.cropActionBar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  width:100%;
+  min-height:42px;
+  margin:0 0 8px;
+}
+.cropActionBar .historybar{
+  margin:0;
+  padding:0;
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:7px;
+}
+.changePhotoInline{
+  -webkit-appearance:none;
+  appearance:none;
+  flex:0 0 auto;
+  min-height:38px;
+  padding:0 15px;
+  border:1px solid var(--line,#d9d9de);
+  border-radius:19px;
+  background:#fff;
+  color:#111;
+  font:inherit;
+  font-size:12px;
+  font-weight:750;
+  box-shadow:0 1px 3px rgba(0,0,0,.04);
+}
+.changePhotoInline:active{transform:scale(.98)}
+@media(max-width:390px){
+  .cropActionBar{gap:8px}
+  .changePhotoInline{padding:0 12px;font-size:11px}
+  .cropActionBar .historybar{gap:5px}
+}
+
 </style>
 </head>
 <body>
+<div id="bgToast" class="bgToast" role="status" aria-live="polite"></div>
 
 <script>
 (function(){
@@ -194,7 +356,10 @@ img,canvas{display:block;max-width:100%}
   </div>
 </div></section>
 <section class="screen" data-screen="2"><div class="hero"><h2>Crop and align</h2><p>Drag with one finger. Pinch with two fingers to zoom.</p></div><div class="workspace cropLayout">
-  <div class="historybar"><button class="iconBtn" id="cropUndo">Undo</button><button class="iconBtn" id="cropRedo">Redo</button><button class="iconBtn danger" id="cropReset">Reset</button></div>
+  <div class="cropActionBar">
+    <button id="changePhotoBtn" class="changePhotoInline" type="button">Change photo</button>
+    <div class="historybar"><button class="iconBtn" id="cropUndo">Undo</button><button class="iconBtn" id="cropRedo">Redo</button><button class="iconBtn danger" id="cropReset">Reset</button></div>
+  </div>
   <div class="upload" id="uploadCard"><div><div class="uicon">+</div><strong>Choose a photo</strong><small>Gallery, camera or files</small></div><input id="imageInput" type="file" accept="image/*"></div>
   <div class="cropStage hidden" id="cropStage"><div class="cropArea" id="cropArea"><canvas id="cropCanvas"></canvas></div></div>
   <div class="controlPanel hidden" id="cropControls"><div class="rangeHead"><strong id="cropRangeName">Zoom</strong><span id="cropRangeValue">100%</span></div><input id="cropRange" type="range" min="1" max="4" value="1" step="0.01"><div class="toolRow"><button class="tool" id="flipBtn">Flip</button><button class="tool" id="rotateBtn">Rotate 90 deg</button><button class="tool" id="fineBtn">Fine rotate</button><button class="tool active" id="guidesBtn">Guides</button><button class="tool" id="gridBtn">Grid</button><button class="tool" id="sizeBtn">Change size</button><button class="tool" id="zoomTool">Zoom</button><button class="tool" id="centerBtn">Center</button></div><div class="miniSize" id="miniSize"><input id="cropW" type="number" step="0.1"><input id="cropH" type="number" step="0.1"><button id="applyCropSize">Apply</button></div></div>
@@ -202,7 +367,7 @@ img,canvas{display:block;max-width:100%}
 <section class="screen" data-screen="3"><div class="hero"><h2>Edit photo</h2><p>Make simple corrections. Every change can be undone.</p></div><div class="workspace editLayout">
   <div class="historybar"><button class="iconBtn" id="editUndo">Undo</button><button class="iconBtn" id="editRedo">Redo</button><button class="iconBtn danger" id="editReset">Reset</button></div>
   <div class="previewStage"><canvas id="editCanvas"></canvas></div>
-  <div class="controlPanel"><div class="tabs"><button class="tab active" data-tab="adjust">Adjust</button><button class="tab" data-tab="border">Border</button></div><div id="adjustPanel"><div class="adjustChips" id="adjustChips"></div><div class="rangeHead" style="margin-top:5px"><strong id="adjustLabel">Brightness</strong><span id="adjustValue">0</span></div><input id="adjustRange" type="range" min="-100" max="100" step="1" value="0"></div><div id="borderPanel" class="hidden"><div class="swatches" id="swatches"></div><div class="borderTools"><div><div class="rangeHead"><strong>Border thickness</strong><span id="borderValue">0.0 mm</span></div><input id="borderRange" type="range" min="0" max="5" step="0.1" value="0"></div><input id="borderColor" type="color" value="#000000" aria-label="Custom border color"></div></div></div>
+  <div class="controlPanel"><div class="tabs"><button class="tab active" data-tab="adjust">Adjust</button><button class="tab" data-tab="border">Border</button><button class="tab" data-tab="background">Remove BG</button></div><div id="adjustPanel"><div class="adjustChips" id="adjustChips"></div><div class="rangeHead" style="margin-top:5px"><strong id="adjustLabel">Brightness</strong><span id="adjustValue">0</span></div><input id="adjustRange" type="range" min="-100" max="100" step="1" value="0"></div><div id="borderPanel" class="hidden"><div class="swatches" id="swatches"></div><div class="borderTools"><div><div class="rangeHead"><strong>Border thickness</strong><span id="borderValue">0.0 mm</span></div><input id="borderRange" type="range" min="0" max="5" step="0.1" value="0"></div><input id="borderColor" type="color" value="#000000" aria-label="Custom border color"></div></div><div id="backgroundPanel" class="hidden bgPanel"><div class="bgActionRow" style="grid-template-columns:1fr"><button class="bgAction" id="restoreBgBtn" disabled>Restore Original</button></div><div class="bgStatus" id="bgStatus">Open this tab to automatically remove the background. White is applied by default.</div><div class="bgChoices"><button class="bgChoice active" data-bg="#ffffff" aria-label="White" title="White"></button><button class="bgChoice" data-bg="#dbeeff" aria-label="Light Blue" title="Light Blue"></button><button class="bgChoice" data-bg="transparent" aria-label="Transparent" title="Transparent"></button><button class="customColorPill" id="customColorBtn" type="button"><span class="rainbowDot"></span><span>Custom</span></button></div><div id="customShadePanel" class="customShadePanel hidden"><input id="bgHueSlider" class="hueSlider" type="range" min="0" max="360" value="210" aria-label="Choose colour"><input id="bgShadeSlider" class="shadeSlider" type="range" min="20" max="100" value="55" aria-label="Choose shade"><input class="bgColor" id="bgCustomColor" type="color" value="#168cf0" aria-label="Exact custom color" style="position:absolute;opacity:0;pointer-events:none;width:1px;height:1px"></div></div></div>
 </div></section>
 <section class="screen" data-screen="4"><div class="hero"><h2>Saved photo</h2><p>Your finished photo is ready to share or print.</p></div><div class="workspace savedLayout">
   <div class="card savedCard"><div class="savedInfo"><div><strong id="savedSize">35 x 45 mm</strong><span id="savedPixels">-</span></div><span id="savedFile">-</span></div><div class="savedPreviewWrap"><img id="savedPreview" alt="Saved passport photo"></div></div>
@@ -310,6 +475,21 @@ async function openBlobFallback(blob,filename){
   downloadBlob(blob,filename);
   return false;
 }
+
+function getCompositedEditCanvas(){
+  const src=$('#editCanvas');
+  const c=document.createElement('canvas');
+  c.width=src.width;c.height=src.height;
+  const ctx=c.getContext('2d');
+
+  if(state.background && state.background.removed && state.background.color && state.background.color!=='transparent'){
+    ctx.fillStyle=state.background.color;
+    ctx.fillRect(0,0,c.width,c.height);
+  }
+  ctx.drawImage(src,0,0);
+  return c;
+}
+
 async function makeSheetBlob(){
   const c=document.createElement('canvas');
   renderSheetOn(c);
@@ -384,11 +564,20 @@ async function sharePrintSheetIOS(){
   }
 }
 
-const state={screen:1,photoW:35,photoH:45,image:null,crop:{zoom:1,rotation:0,quarter:0,flip:false,x:0,y:0,grid:false,guides:true},adjust:{brightness:0,contrast:0,saturation:0,exposure:0,highlights:0,shadows:0,warmth:0,tint:0,sharpness:0,grayscale:0},border:{width:0,color:'#000000'},activeAdjust:'brightness',base:null,saved:{format:'jpeg',quality:.95,dpi:300,blob:null,url:null,w:0,h:0},paper:{name:'4R',w:102,h:152,orientation:'portrait',custom:false},spacing:0,copies:1};
+
+
+
+
+$('#changePhotoBtn').onclick=()=>{
+  const input=$('#imageInput');
+  if(input){input.value='';input.click();}
+};
+
+const state={screen:1,photoW:35,photoH:45,image:null,crop:{zoom:1,rotation:0,quarter:0,flip:false,x:0,y:0,grid:false,guides:true},adjust:{brightness:0,contrast:0,saturation:0,exposure:0,highlights:0,shadows:0,warmth:0,tint:0,sharpness:0,grayscale:0},border:{width:0,color:'#000000'},background:{removed:false,color:'#ffffff',originalBase:null,processedBase:null},activeAdjust:'brightness',base:null,saved:{format:'jpeg',quality:.95,dpi:300,blob:null,url:null,w:0,h:0},paper:{name:'4R',w:102,h:152,orientation:'portrait',custom:false},spacing:0,copies:1};
 const cropHist=[],cropFuture=[],editHist=[],editFuture=[];
 const copy=o=>JSON.parse(JSON.stringify(o));
 function pushCrop(){cropHist.push(copy(state.crop));if(cropHist.length>40)cropHist.shift();cropFuture.length=0;syncHistory()}
-function pushEdit(){editHist.push({adjust:copy(state.adjust),border:copy(state.border)});if(editHist.length>60)editHist.shift();editFuture.length=0;syncHistory()}
+function pushEdit(){editHist.push({adjust:copy(state.adjust),border:copy(state.border),background:{removed:state.background.removed,color:state.background.color,originalBase:state.background.originalBase,processedBase:state.background.processedBase}});if(editHist.length>60)editHist.shift();editFuture.length=0;syncHistory()}
 function syncHistory(){$('#cropUndo').disabled=!cropHist.length;$('#cropRedo').disabled=!cropFuture.length;$('#editUndo').disabled=!editHist.length;$('#editRedo').disabled=!editFuture.length}
 function show(n){state.screen=n;$$('.screen').forEach(s=>s.classList.toggle('active',+s.dataset.screen===n));$('#stepBadge').textContent=`${n} of 7`;$('#backBtn').classList.toggle('hidden',n===1);$('#nextBtn').classList.remove('hidden');$('#nextBtn').textContent=({1:'Continue',2:'Next',3:'Save',4:'',5:'Continue',6:'Continue',7:'Print'})[n]||'Continue';if(n===4)$('#nextBtn').classList.add('hidden');if(n===2)requestAnimationFrame(()=>requestAnimationFrame(resizeCrop));if(n===3)requestAnimationFrame(()=>requestAnimationFrame(renderEdit));if(n===6)requestAnimationFrame(()=>requestAnimationFrame(renderSheet));if(n===7)requestAnimationFrame(()=>requestAnimationFrame(renderFinal))}
 $('#backBtn').onclick=()=>{if(state.screen>1)show(state.screen-1)};
@@ -419,7 +608,7 @@ $$('.preset').forEach(btn=>{btn.addEventListener('click',()=>selectPhotoPreset(b
 $('#applyCustomPhoto').onclick=()=>{const w=+$('#photoW').value,h=+$('#photoH').value;if(!(w>0&&h>0))return;state.photoW=w;state.photoH=h;$$('.preset').forEach(x=>x.classList.remove('active'))};
 // Crop
 const cropArea=$('#cropArea'), cropCanvas=$('#cropCanvas'), cctx=cropCanvas.getContext('2d');
-$('#imageInput').onchange=e=>{const f=e.target.files&&e.target.files[0];if(!f)return;const u=URL.createObjectURL(f),img=new Image();img.onload=()=>{state.image=img;state.crop={zoom:1,rotation:0,quarter:0,flip:false,x:0,y:0,grid:false,guides:true};cropHist.length=0;cropFuture.length=0;$('#uploadCard').classList.add('hidden');$('#cropStage').classList.remove('hidden');$('#cropControls').classList.remove('hidden');$('#cropRange').value=1;$('#cropRangeName').textContent='Zoom';$('#cropRangeValue').textContent='100%';resizeCrop();syncHistory();URL.revokeObjectURL(u)};img.src=u};
+$('#imageInput').onchange=e=>{state.background={removed:false,color:'#ffffff',originalBase:null,processedBase:null};const f=e.target.files&&e.target.files[0];if(!f)return;const u=URL.createObjectURL(f),img=new Image();img.onload=()=>{state.image=img;state.crop={zoom:1,rotation:0,quarter:0,flip:false,x:0,y:0,grid:false,guides:true};cropHist.length=0;cropFuture.length=0;$('#uploadCard').classList.add('hidden');$('#cropStage').classList.remove('hidden');$('#cropControls').classList.remove('hidden');$('#cropRange').value=1;$('#cropRangeName').textContent='Zoom';$('#cropRangeValue').textContent='100%';resizeCrop();syncHistory();URL.revokeObjectURL(u)};img.src=u};
 function resizeCrop(){if($('#cropStage').classList.contains('hidden'))return;const stage=$('#cropStage'),ratio=state.photoW/state.photoH;cropArea.style.aspectRatio=state.photoW+' / '+state.photoH;const sr=stage.getBoundingClientRect(),cs=getComputedStyle(stage);if(sr.width<2||sr.height<2)return;const aw=Math.max(1,sr.width-(parseFloat(cs.paddingLeft)||0)-(parseFloat(cs.paddingRight)||0)-2),ah=Math.max(1,sr.height-(parseFloat(cs.paddingTop)||0)-(parseFloat(cs.paddingBottom)||0)-2);let w=Math.min(aw,ah*ratio),h=w/ratio;if(h>ah){h=ah;w=h*ratio}cropArea.style.width=Math.max(1,Math.floor(w))+'px';cropArea.style.height=Math.max(1,Math.floor(h))+'px';cropArea.style.margin='auto';const r=cropArea.getBoundingClientRect(),d=devicePixelRatio||1;cropCanvas.width=Math.max(1,Math.round(r.width*d));cropCanvas.height=Math.max(1,Math.round(r.height*d));cctx.setTransform(d,0,0,d,0,0);drawCrop()}
 window.addEventListener('resize',()=>{if(state.screen===2)resizeCrop()});
 function frame(){const w=cropArea.clientWidth,h=cropArea.clientHeight,p=5;return{x:p,y:p,w:Math.max(1,w-p*2),h:Math.max(1,h-p*2)}}
@@ -440,15 +629,31 @@ const meta={brightness:['Brightness',-100,100,1],contrast:['Contrast',-100,100,1
 Object.keys(meta).forEach(k=>{const b=document.createElement('button');b.className='chip'+(k==='brightness'?' active':'');b.textContent=meta[k][0];b.onclick=()=>{state.activeAdjust=k;$$('.chip').forEach(x=>x.classList.toggle('active',x===b));syncAdjust()};$('#adjustChips').appendChild(b)});
 function syncAdjust(){const m=meta[state.activeAdjust],r=$('#adjustRange');r.min=m[1];r.max=m[2];r.step=m[3];r.value=state.adjust[state.activeAdjust];$('#adjustLabel').textContent=m[0];$('#adjustValue').textContent=state.adjust[state.activeAdjust]}
 $('#adjustRange').oninput=e=>{state.adjust[state.activeAdjust]=+e.target.value;$('#adjustValue').textContent=e.target.value;renderEdit()};$('#adjustRange').onchange=()=>pushEdit();
-$$('.tab').forEach(b=>b.onclick=()=>{$$('.tab').forEach(x=>x.classList.toggle('active',x===b));$('#adjustPanel').classList.toggle('hidden',b.dataset.tab!=='adjust');$('#borderPanel').classList.toggle('hidden',b.dataset.tab!=='border')});
+$$('.tab').forEach(b=>b.onclick=async()=>{$$('.tab').forEach(x=>x.classList.toggle('active',x===b));const t=b.dataset.tab;$('#adjustPanel').classList.toggle('hidden',t!=='adjust');$('#borderPanel').classList.toggle('hidden',t!=='border');$('#backgroundPanel').classList.toggle('hidden',t!=='background');if(t==='background'&&!state.background.removed){await autoRemoveBackground()}});
 ['#ffffff','#000000','#d1d1d6','#8e8e93','#007aff','#34c759','#ff3b30'].forEach((c,i)=>{const b=document.createElement('button');b.className='swatch';b.style.background=c;b.title=i===0?'White':c;b.onclick=()=>{pushEdit();state.border.color=c;if(state.border.width===0)state.border.width=.5;$('#borderColor').value=c;$('#borderRange').value=state.border.width;syncBorder();$$('.swatch').forEach(x=>x.classList.toggle('active',x===b));renderEdit()};$('#swatches').appendChild(b)});
 $('#borderRange').oninput=e=>{state.border.width=+e.target.value;syncBorder();renderEdit()};$('#borderRange').onchange=()=>pushEdit();$('#borderColor').oninput=e=>{state.border.color=e.target.value;renderEdit()};$('#borderColor').onchange=()=>pushEdit();function syncBorder(){$('#borderValue').textContent=state.border.width.toFixed(1)+' mm'}
 function applyAdjust(src,w,h){const cv=document.createElement('canvas');cv.width=w;cv.height=h;const x=cv.getContext('2d');x.drawImage(src,0,0,w,h);let im=x.getImageData(0,0,w,h),d=im.data,a=state.adjust;const br=a.brightness*1.8,exp=Math.pow(2,a.exposure/100),con=(259*(a.contrast+255))/(255*(259-a.contrast)),sat=1+a.saturation/100,gray=a.grayscale/100,warm=a.warmth*.7,tint=a.tint*.45;for(let i=0;i<d.length;i+=4){let r=d[i],g=d[i+1],b=d[i+2];r=(r+br)*exp;g=(g+br)*exp;b=(b+br)*exp;r=con*(r-128)+128;g=con*(g-128)+128;b=con*(b-128)+128;let lum=.2126*r+.7152*g+.0722*b;let sh=a.shadows*1.15*(1-lum/255),hi=a.highlights*1.15*(lum/255);r+=sh+hi;g+=sh+hi;b+=sh+hi;lum=.2126*r+.7152*g+.0722*b;r=lum+(r-lum)*sat;g=lum+(g-lum)*sat;b=lum+(b-lum)*sat;r+=warm+tint;b-=warm-tint;let y=.299*r+.587*g+.114*b;r=r*(1-gray)+y*gray;g=g*(1-gray)+y*gray;b=b*(1-gray)+y*gray;d[i]=clamp(r,0,255);d[i+1]=clamp(g,0,255);d[i+2]=clamp(b,0,255)}x.putImageData(im,0,0);if(a.sharpness>0)sharpen(x,w,h,a.sharpness/100);return cv}
 function sharpen(x,w,h,s){const im=x.getImageData(0,0,w,h),src=new Uint8ClampedArray(im.data),d=im.data,k=clamp(s,0,1)*1.05;for(let yy=1;yy<h-1;yy++)for(let xx=1;xx<w-1;xx++){let i=(yy*w+xx)*4;for(let c=0;c<3;c++){let n=src[i-4+c]+src[i+4+c]+src[i-w*4+c]+src[i+w*4+c];d[i+c]=clamp(src[i+c]*(1+4*k)-n*k,0,255)}}x.putImageData(im,0,0)}
 function borderDraw(x,w,h){if(state.border.width<=0)return;const p=Math.max(1,state.border.width/state.photoW*w);x.save();x.strokeStyle=state.border.color;x.lineWidth=p;x.strokeRect(p/2,p/2,w-p,h-p);x.restore()}
-function renderEdit(){if(!state.base)return;const max=900,rat=state.photoW/state.photoH;let w,h;if(rat>=1){w=max;h=Math.max(1,Math.round(max/rat))}else{h=max;w=Math.max(1,Math.round(max*rat))}const cv=applyAdjust(state.base,w,h);borderDraw(cv.getContext('2d'),w,h);const out=$('#editCanvas');out.width=w;out.height=h;out.style.aspectRatio=state.photoW+' / '+state.photoH;out.getContext('2d').clearRect(0,0,w,h);out.getContext('2d').drawImage(cv,0,0,w,h);syncAdjust();syncBorder();fitCanvasInStage(out,out.closest('.previewStage'),state.photoW/state.photoH)}
+function renderEdit(){if(!(state.background.removed&&state.background.processedBase?state.background.processedBase:state.base))return;const max=900,rat=state.photoW/state.photoH;let w,h;if(rat>=1){w=max;h=Math.max(1,Math.round(max/rat))}else{h=max;w=Math.max(1,Math.round(max*rat))}const cv=applyAdjust((state.background.removed&&state.background.processedBase?state.background.processedBase:state.base),w,h);borderDraw(cv.getContext('2d'),w,h);const out=$('#editCanvas');out.width=w;out.height=h;out.style.aspectRatio=state.photoW+' / '+state.photoH;out.getContext('2d').clearRect(0,0,w,h);out.getContext('2d').drawImage(cv,0,0,w,h);syncAdjust();syncBorder();fitCanvasInStage(out,out.closest('.previewStage'),state.photoW/state.photoH)}
 $('#editReset').onclick=()=>{pushEdit();Object.keys(state.adjust).forEach(k=>state.adjust[k]=0);state.border={width:0,color:'#000000'};syncAdjust();syncBorder();renderEdit()};$('#editUndo').onclick=()=>{if(!editHist.length)return;editFuture.push({adjust:copy(state.adjust),border:copy(state.border)});const s=editHist.pop();state.adjust=s.adjust;state.border=s.border;syncAdjust();syncBorder();renderEdit();syncHistory()};$('#editRedo').onclick=()=>{if(!editFuture.length)return;editHist.push({adjust:copy(state.adjust),border:copy(state.border)});const s=editFuture.pop();state.adjust=s.adjust;state.border=s.border;syncAdjust();syncBorder();renderEdit();syncHistory()};
-function processed(dpi){const w=mmPx(state.photoW,dpi),h=mmPx(state.photoH,dpi),cv=applyAdjust(state.base,w,h);borderDraw(cv.getContext('2d'),w,h);return cv}
+function processed(dpi){
+  const w=mmPx(state.photoW,dpi),h=mmPx(state.photoH,dpi);
+  const src=(state.background&&state.background.removed&&state.background.processedBase)?state.background.processedBase:state.base;
+  const fg=applyAdjust(src,w,h);
+  const out=document.createElement('canvas');
+  out.width=w;out.height=h;
+  const x=out.getContext('2d');
+
+  if(state.background&&state.background.removed&&state.background.color&&state.background.color!=='transparent'){
+    x.fillStyle=state.background.color;
+    x.fillRect(0,0,w,h);
+  }
+
+  x.drawImage(fg,0,0,w,h);
+  borderDraw(x,w,h);
+  return out;
+}
 // Save
 function openSave(){$('#saveModal').classList.remove('hidden');updateEstimate()};$('#closeSave').onclick=()=>$('#saveModal').classList.add('hidden');$$('[data-format]').forEach(b=>b.onclick=()=>{$$('[data-format]').forEach(x=>x.classList.toggle('active',x===b));state.saved.format=b.dataset.format;updateEstimate()});$('#qualityRange').oninput=e=>{state.saved.quality=+e.target.value/100;$('#qualityValue').textContent=e.target.value+'%';updateEstimateSoon()};$$('.dpi').forEach(b=>b.onclick=()=>{$$('.dpi').forEach(x=>x.classList.toggle('active',x===b));$('#customDpiWrap').classList.toggle('hidden',b.dataset.dpi!=='custom');state.saved.dpi=b.dataset.dpi==='custom'?(+$('#customDpi').value||600):+b.dataset.dpi;updateEstimate()});$('#customDpi').oninput=e=>{state.saved.dpi=clamp(+e.target.value||300,72,1200);updateEstimateSoon()};let et;function updateEstimateSoon(){clearTimeout(et);et=setTimeout(updateEstimate,120)}function toBlob(cv,type,q){return new Promise(r=>cv.toBlob(r,type,q))}async function updateEstimate(){if(!state.base)return;const cv=processed(state.saved.dpi);$('#resolution').textContent=`${cv.width} x ${cv.height} px`;$('#estimate').textContent='Calculating...';const b=await toBlob(cv,state.saved.format==='png'?'image/png':'image/jpeg',state.saved.quality);$('#estimate').textContent=b?kb(b.size):'-'}
 $('#confirmSave').onclick=async()=>{const cv=processed(state.saved.dpi),type=state.saved.format==='png'?'image/png':'image/jpeg',b=await toBlob(cv,type,state.saved.quality);if(!b)return alert('Could not save this image.');if(state.saved.url)URL.revokeObjectURL(state.saved.url);state.saved.blob=b;state.saved.url=URL.createObjectURL(b);state.saved.w=cv.width;state.saved.h=cv.height;const ext=state.saved.format==='png'?'png':'jpg',a=document.createElement('a');a.href=state.saved.url;a.download=`passport-photo-by-dominic-${state.photoW}x${state.photoH}mm.${ext}`;document.body.appendChild(a);a.click();a.remove();$('#saveModal').classList.add('hidden');$('#savedPreview').src=state.saved.url;$('#savedSize').textContent=`${state.photoW} x ${state.photoH} mm`;$('#savedPixels').textContent=`${state.saved.w} x ${state.saved.h} px - ${state.saved.dpi} DPI`;$('#savedFile').textContent=kb(b.size);show(4)};
@@ -490,6 +695,144 @@ syncAppHeight();
 window.addEventListener('resize',()=>{syncAppHeight();requestAnimationFrame(()=>{if(state.screen===2&&state.image)resizeCrop();if(state.screen===3&&state.base)renderEdit();if(state.screen===6&&state.saved.url)renderSheet();if(state.screen===7&&state.saved.url)renderFinal();});});
 if(window.ResizeObserver){const ro=new ResizeObserver(()=>{requestAnimationFrame(()=>{if(state.screen===2&&state.image)resizeCrop();if(state.screen===3&&state.base)fitCanvasInStage($('#editCanvas'),$('.previewStage'),state.photoW/state.photoH);if(state.screen===6&&state.saved.url)fitCanvasInStage($('#sheetCanvas'),$('#sheetCanvas').closest('.paperStage'),state.paper.w/state.paper.h);if(state.screen===7&&state.saved.url)fitCanvasInStage($('#finalCanvas'),$('#finalCanvas').closest('.paperStage'),state.paper.w/state.paper.h);});});$$('.cropStage,.previewStage,.paperStage').forEach(el=>ro.observe(el));}
 syncAdjust();syncBorder();syncHistory();show(1);
+
+
+let bgToastTimer=null;
+function positionBgToast(){
+  const t=$('#bgToast');
+  const canvas=$('#editCanvas');
+  if(!t||!canvas)return;
+  const r=canvas.getBoundingClientRect();
+  // Place around lower face/collar area while staying inside viewport.
+  const desired=r.top + r.height*0.76;
+  const clamped=Math.min(window.innerHeight-110,Math.max(90,desired));
+  t.style.top=clamped+'px';
+}
+function showBgToast(message,persistent=false){
+  const t=$('#bgToast');
+  if(!t)return;
+  if(bgToastTimer){clearTimeout(bgToastTimer);bgToastTimer=null}
+  positionBgToast();
+  t.textContent=message;
+  t.classList.add('show');
+  if(!persistent){
+    bgToastTimer=setTimeout(()=>t.classList.remove('show'),1800);
+  }
+}
+function hideBgToast(){
+  const t=$('#bgToast');
+  if(!t)return;
+  if(bgToastTimer){clearTimeout(bgToastTimer);bgToastTimer=null}
+  t.classList.remove('show');
+}
+
+// Background removal (client-side)
+async function loadBgRemover(){
+  if(window.__dominicBgRemover)return window.__dominicBgRemover;
+  try{
+    const mod=await import('https://esm.sh/@imgly/background-removal@1.7.0?bundle');
+    window.__dominicBgRemover=mod.default||mod.removeBackground;
+    if(!window.__dominicBgRemover)throw new Error('Background-removal module did not load.');
+    return window.__dominicBgRemover;
+  }catch(err){
+    console.error(err);
+    throw new Error('Background removal could not load. Please try again.');
+  }
+}
+function dataUrlToBlob(dataUrl){
+  const a=dataUrl.split(','), mime=(a[0].match(/:(.*?);/)||[])[1]||'image/png';
+  const bin=atob(a[1]), u8=new Uint8Array(bin.length);
+  for(let i=0;i<bin.length;i++)u8[i]=bin.charCodeAt(i);
+  return new Blob([u8],{type:mime});
+}
+function loadImageFromUrl(url){
+  return new Promise((resolve,reject)=>{const im=new Image();im.onload=()=>resolve(im);im.onerror=reject;im.src=url});
+}
+async function processedBlobToBase(blob){
+  const url=URL.createObjectURL(blob);
+  try{return await loadImageFromUrl(url)}finally{setTimeout(()=>URL.revokeObjectURL(url),1000)}
+}
+function setBgChoice(color){
+  state.background.color=color;
+  $$('.bgChoice').forEach(x=>x.classList.toggle('active',x.dataset.bg===color));
+  renderEdit();
+}
+async function autoRemoveBackground(){
+  if(!state.base || state.background.removed)return;
+
+  state.background.color='#ffffff';
+  $$('.bgChoice').forEach(x=>x.classList.toggle('active',x.dataset.bg==='#ffffff'));
+  $('#restoreBgBtn').disabled=true;
+
+  try{
+    if(!state.background.originalBase)state.background.originalBase=state.base;
+
+    $('#bgStatus').textContent='Preparing background removal...';
+    showBgToast('Preparing background removalâ€¦',true);
+
+    const c=document.createElement('canvas');
+    const sw=state.base.naturalWidth||state.base.width;
+    const sh=state.base.naturalHeight||state.base.height;
+    const maxSide=768;
+    const scale=Math.min(1,maxSide/Math.max(sw,sh));
+    c.width=Math.max(1,Math.round(sw*scale));
+    c.height=Math.max(1,Math.round(sh*scale));
+    c.getContext('2d').drawImage(state.base,0,0,c.width,c.height);
+
+    const remover=await loadBgRemover();
+
+    $('#bgStatus').textContent='Removing background...';
+    showBgToast('Removing backgroundâ€¦',true);
+
+    const blob=await remover(
+      dataUrlToBlob(c.toDataURL('image/png')),
+      {output:{format:'image/png',quality:1,type:'foreground'}}
+    );
+
+    pushEdit();
+    state.background.processedBase=await processedBlobToBase(blob);
+    state.background.removed=true;
+    state.background.color='#ffffff';
+
+    $('#restoreBgBtn').disabled=false;
+    $('#bgStatus').textContent='Background removed. White is applied. Choose another background below if you want.';
+    renderEdit();
+    showBgToast('White background applied');
+  }catch(err){
+    console.error(err);
+    $('#bgStatus').textContent=err.message||'Background removal failed. Please try again.';
+    showBgToast('Background removal failed');
+  }
+}
+$('#restoreBgBtn').onclick=()=>{
+  if(!state.background.removed)return;
+  pushEdit();
+  state.background.removed=false;
+  
+  state.background.color='#ffffff';
+  $$('.bgChoice').forEach(x=>x.classList.toggle('active',x.dataset.bg==='#ffffff'));
+  $('#restoreBgBtn').disabled=true;
+  $('#bgStatus').textContent='Original background restored. Reopen Remove BG to remove it again.';
+  renderEdit();
+};
+$$('.bgChoice').forEach(b=>b.onclick=()=>setBgChoice(b.dataset.bg));
+
+function hslToHex(h,s,l){s/=100;l/=100;const k=n=>(n+h/30)%12,a=s*Math.min(l,1-l),f=n=>l-a*Math.max(-1,Math.min(k(n)-3,Math.min(9-k(n),1)));return '#'+[f(0),f(8),f(4)].map(x=>Math.round(255*x).toString(16).padStart(2,'0')).join('')}
+function applyCustomShade(){const hex=hslToHex(+$('#bgHueSlider').value,78,+$('#bgShadeSlider').value);state.background.color=hex;$('#bgCustomColor').value=hex;$('#bgHueSlider').style.setProperty('--picked',hex);$$('.bgChoice').forEach(x=>x.classList.remove('active'));renderEdit()}
+$('#customColorBtn').onclick=()=>{$('#customShadePanel').classList.toggle('hidden');if(!$('#customShadePanel').classList.contains('hidden'))applyCustomShade()};
+$('#bgHueSlider').oninput=applyCustomShade;$('#bgShadeSlider').oninput=applyCustomShade;
+
+
+// Composite selected replacement background behind transparent foreground.
+const __renderEditOriginal=renderEdit;
+renderEdit=function(){
+  __renderEditOriginal();
+  if(!state.background.removed||state.background.color==='transparent')return;
+  const canvas=$('#editCanvas'), ctx=canvas.getContext('2d');
+  const fg=document.createElement('canvas');fg.width=canvas.width;fg.height=canvas.height;fg.getContext('2d').drawImage(canvas,0,0);
+  ctx.save();ctx.globalCompositeOperation='destination-over';ctx.fillStyle=state.background.color;ctx.fillRect(0,0,canvas.width,canvas.height);ctx.restore();
+};
+
 })();
 </script>
 </body></html>

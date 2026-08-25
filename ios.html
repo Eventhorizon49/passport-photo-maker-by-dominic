@@ -768,7 +768,7 @@ async function autoRemoveBackground(){
     if(!state.background.originalBase)state.background.originalBase=state.base;
 
     $('#bgStatus').textContent='Preparing background removal...';
-    showBgToast('Preparing background removalâ€¦',true);
+    showBgToast('Preparing background removal...',true);
 
     const c=document.createElement('canvas');
     const sw=state.base.naturalWidth||state.base.width;
@@ -782,7 +782,7 @@ async function autoRemoveBackground(){
     const remover=await loadBgRemover();
 
     $('#bgStatus').textContent='Removing background...';
-    showBgToast('Removing backgroundâ€¦',true);
+    showBgToast('Removing background...',true);
 
     const blob=await remover(
       dataUrlToBlob(c.toDataURL('image/png')),
